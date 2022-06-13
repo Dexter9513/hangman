@@ -130,8 +130,11 @@ end
 def load_saved_games
   saved = {}
   if File.exist?(SAVE_FILE)
-    saved = YAML.load(File.read(SAVE_FILE), permitted_classes: [Game])
-    saved = {} unless saved.instance_of?(Hash)
+    begin
+      saved = YAML.load(File.read(SAVE_FILE), permitted_classes: [Game])
+    rescue
+      saved = {}
+    end
   end
   saved
 end
@@ -150,6 +153,10 @@ class Hangman
         game = Game.new
       when '2'
         saved_games = load_saved_games
+        unless saved_games.length.positive?
+          puts 'No saved game found'
+          next
+        end
         puts 'Games Found:'
         saved_games.each_key { |game| puts game }
         loop do

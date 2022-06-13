@@ -1,0 +1,19 @@
+---
+game1: !ruby/object:Game
+  secret_word:
+  - v
+  - e
+  - r
+  - z
+  - e
+  - i
+  - c
+  - h
+  - "n"
+  - i
+  - s
+  chances_remaining: 7
+  guesses:
+  - a
+  - e
+  - i
